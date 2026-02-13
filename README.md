@@ -151,7 +151,7 @@ cp ./path/to/contract.txt ../data/server1/restore/
 
 ---
 
-## 7. Verify Inside Container (Optional)
+## 7. Verify Inside Container
 
 ```bash
 docker exec -it server1 ls -R /server1files/restore/
