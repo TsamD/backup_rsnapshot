@@ -65,10 +65,16 @@ docker exec -it backup rsnapshot alpha
 
 ---
 
+## Verify Dates Snapshots
+
+```bash
+docker exec -it backup ls -l snapshots/
+```
+
 ## Verify Latest Snapshot
 
 ```bash
-docker exec -it backup ls -R /data/backup/snapshots/alpha.0/
+docker exec -it backup ls -R snapshots/alpha.0/
 ```
 
 ---
