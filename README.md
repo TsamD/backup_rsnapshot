@@ -119,10 +119,7 @@ cp ../data/backup/snapshots/alpha.0/server1/server1files/inbox/backup.tar.gz.gpg
 Using stored passphrase:
 
 ```bash
-gpg --batch --yes \
-  --passphrase "$(cat ../config/cron/passphrase)" \
-  -o restore.tar.gz \
-  -d backup.tar.gz.gpg
+gpg --batch --yes --passphrase "$(cat ../config/cron/passphrase)" -o restore.tar.gz -d backup.tar.gz.gpg
 ```
 
 Or interactive mode:
