@@ -39,6 +39,126 @@ docker compose up -d --build
 
 ```
 
+# Backup & Restore – Command Recap
+
+## Rsnapshot Configuration Check
+
+```bash
+docker exec -it backup rsnapshot configtest
+````
+
+---
+
+## Test Backup (Dry Run)
+
+```bash
+docker exec -it backup rsnapshot -t alpha
+```
+
+---
+
+## Run Backup
+
+```bash
+docker exec -it backup rsnapshot alpha
+```
+
+---
+
+## Verify Latest Snapshot
+
+```bash
+docker exec -it backup ls -R /data/backup/snapshots/alpha.0/
+```
+
+---
+
+## Check Logs
+
+Show last 50 lines:
+
+```bash
+docker exec -it backup tail -n 50 /var/log/rsnapshot.log
+```
+
+Follow logs live:
+
+```bash
+docker exec -it backup tail -f /var/log/rsnapshot.log
+```
+
+---
+
+# Restore Procedure
+
+## 1. Prepare Workspace (Host)
+
+```bash
+rm -rf workspace_restore/*
+cd workspace_restore
+```
+
+---
+
+## 2. Copy Encrypted Archive from Snapshot
+
+```bash
+cp ../data/backup/snapshots/alpha.0/server1/server1files/inbox/backup.tar.gz.gpg .
+```
+
+---
+
+## 3. Decrypt Archive
+
+Using stored passphrase:
+
+```bash
+gpg --batch --yes \
+  --passphrase "$(cat ../config/cron/passphrase)" \
+  -o restore.tar.gz \
+  -d backup.tar.gz.gpg
+```
+
+Or interactive mode:
+
+```bash
+gpg -o restore.tar.gz -d backup.tar.gz.gpg
+```
+
+---
+
+## 4. Extract Archive
+
+```bash
+tar -xzf restore.tar.gz
+```
+
+---
+
+## 5. Verify Restored Files
+
+```bash
+find . -type f
+```
+
+---
+
+## 6. Inject File Back to Server Volume
+
+```bash
+cp ./path/to/contract.txt ../data/server1/restore/
+```
+
+---
+
+## 7. Verify Inside Container (Optional)
+
+```bash
+docker exec -it server1 ls -R /server1files/restore/
 ```
 
 ```
+
+---
+
+
