@@ -4,12 +4,13 @@ This project implements a complete, secure, and containerized backup strategy, m
 
 ## Statement & Objectives (The Original "Recipe")
 
-The objective was to set up a simple backup/restore strategy using standard Linux tools:
+The objective was to set up a robust backup/restore strategy using standard Linux tools, including a retention policy:
 * **Cron**: Task scheduling.
 * **Rsync / SSH**: Secure synchronization.
 * **GPG**: Backup encryption.
 * **Tar**: Compression.
-* **Bash**: Automation scripting.
+**Rsnapshot:** Management of GFS (Grandfather-Father-Son) retention and hardlinks.
+
 
 ## Solution Architecture
 
