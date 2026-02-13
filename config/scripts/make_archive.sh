@@ -12,9 +12,7 @@ cp -r $FOLDER_TO_BACKUP/ $tmp_folder
 
 tar czf $ARCHIVE $tmp_folder
 
-gpg --passphrase $PASSPHRASE -c --batch $ARCHIVE
+gpg --yes --passphrase $PASSPHRASE -c --batch $ARCHIVE
 
 rm -rf $tmp_folder
 rm -rf $ARCHIVE
-
-

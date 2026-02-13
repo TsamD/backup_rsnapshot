@@ -1,1 +1,6 @@
-/data/
+data/*
+!data/server1/
+!data/server2/
+!data/backup/
+!data/backup/snapshots/
+!**/.gitkeep

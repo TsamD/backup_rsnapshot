@@ -1,0 +1,30 @@
+[2026-02-11T16:44:04] /usr/bin/rsnapshot alpha: started
+[2026-02-11T16:44:04] echo 225 > /config/rsnapshot.pid
+[2026-02-11T16:44:04] mkdir -m 0700 -p /.snapshots/
+[2026-02-11T16:44:04] mkdir -m 0755 -p /.snapshots/alpha.0/
+[2026-02-11T16:44:04] /usr/bin/rsync -a --delete --numeric-ids --relative --delete-excluded /data/ /.snapshots/alpha.0/localhost/
+[2026-02-11T16:44:04] touch /.snapshots/alpha.0/
+[2026-02-11T16:44:04] rm -f /config/rsnapshot.pid
+[2026-02-11T16:44:04] /usr/bin/rsnapshot alpha: completed successfully
+[2026-02-11T17:40:01] /usr/bin/rsnapshot alpha: started
+[2026-02-11T17:40:01] echo 377 > /var/run/rsnapshot.pid
+[2026-02-11T17:40:01] mkdir -m 0755 -p /snapshots/alpha.0/
+[2026-02-11T17:40:01] /usr/bin/rsync -a --delete --numeric-ids --relative --delete-excluded /backup/inbox/ /snapshots/alpha.0/localhost/
+[2026-02-11T17:40:01] touch /snapshots/alpha.0/
+[2026-02-11T17:40:01] rm -f /var/run/rsnapshot.pid
+[2026-02-11T17:40:01] /usr/bin/rsnapshot alpha: completed successfully
+[2026-02-11T17:40:25] /usr/bin/rsnapshot alpha: started
+[2026-02-11T17:40:25] echo 391 > /var/run/rsnapshot.pid
+[2026-02-11T17:40:25] /bin/cp -al /snapshots/alpha.0 /snapshots/alpha.1
+[2026-02-11T17:40:25] /usr/bin/rsync -a --delete --numeric-ids --relative --delete-excluded /backup/inbox/ /snapshots/alpha.0/localhost/
+[2026-02-11T17:40:25] touch /snapshots/alpha.0/
+[2026-02-11T17:40:25] rm -f /var/run/rsnapshot.pid
+[2026-02-11T17:40:25] /usr/bin/rsnapshot alpha: completed successfully
+[2026-02-11T22:21:22] /usr/bin/rsnapshot alpha: started
+[2026-02-11T22:21:22] echo 7 > /var/run/rsnapshot.pid
+[2026-02-11T22:21:22] mkdir -m 0755 -p /snapshots/alpha.0/
+[2026-02-11T22:21:22] /usr/bin/rsync -a --delete --numeric-ids --relative --delete-excluded --rsh=/usr/bin/ssh root@server1:/server1files/ /snapshots/alpha.0/server1/
+[2026-02-11T22:21:27] /usr/bin/rsync -a --delete --numeric-ids --relative --delete-excluded --rsh=/usr/bin/ssh root@server2:/server2files/ /snapshots/alpha.0/server2/
+[2026-02-11T22:21:32] touch /snapshots/alpha.0/
+[2026-02-11T22:21:32] rm -f /var/run/rsnapshot.pid
+[2026-02-11T22:21:32] /usr/bin/rsnapshot alpha: completed successfully

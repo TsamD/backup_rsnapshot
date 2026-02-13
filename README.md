@@ -1,21 +1,45 @@
-Recette pour une stratégie de backup/restauration simple avec des outils standards linux:
+```markdown
+# Automated & Secure Backup Project
 
-Ingrédients:
-  - cron pour la plannification de la tâche de backup
-  - rsync / ssh pour la synchronisation entre serveur source -> serveur backup
-  - Gnu gpg (encryption/décription) -> pour encrypter les backups
-  - Tar / Zip -> pour compresser les backup
-  - Bash -> pour le scripting
+This project implements a complete, secure, and containerized backup strategy, meeting the requirements of modern system architecture.
 
+## Statement & Objectives (The Original "Recipe")
 
-Recette:
-  - Créer un script bash qui va:
-       - créer un dossier avec la date du jour dans le dossier MesBakcups
-       - copier les fichiers du dossier "MesDocuments" dans le dossier créé
-       - encrypter les fichiers avec gpg
-       - compresser le dossier créé avec tar ou zip
-       - exécuter la commande rsync 
-            exemple: rsync -avz MesBackups/dossier-16-04-2025.zip root@mon-serveur-backup.be:/opt/mes-backups
-  - ajouter une tâche cron qui va se lancer tout les jours à 2h du matin et qui va appeler le script bash défini ci dessus
+The objective was to set up a simple backup/restore strategy using standard Linux tools:
+* **Cron**: Task scheduling.
+* **Rsync / SSH**: Secure synchronization.
+* **GPG**: Backup encryption.
+* **Tar**: Compression.
+* **Bash**: Automation scripting.
 
+## Solution Architecture
 
+We have industrialized this "recipe" by using **Docker** to simulate a real infrastructure composed of 3 independent machines.
+
+![Backup Architecture](backup.png)
+
+### Components
+1. **Backup Server (Rsnapshot)**: The orchestrator. It initiates the connection (Pull), retrieves archives, and manages history (snapshot rotation).
+2. **Client Servers (Server1 & Server2)**: Data sources. They execute a local script to compress and encrypt data before sending.
+3. **Localhost (Host)**: The administrator machine, used to manage keys, store persistent volumes, and perform manual restorations.
+
+---
+
+## Installation and Startup
+
+### 1. Prerequisites
+* Docker & Docker Compose installed.
+* SSH and GPG keys generated (provided in the `config` folder for this project).
+
+### 2. Startup
+The environment is pre-configured. Data folders (`files`, `inbox`, `restore`) are automatically initialized.
+
+```bash
+# Start the infrastructure
+docker compose up -d --build
+
+```
+
+```
+
+```
