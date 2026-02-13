@@ -1,4 +1,3 @@
-```markdown
 # Automated & Secure Backup Project
 
 This project implements a complete, secure, and containerized backup strategy, meeting the requirements of modern system architecture.
