@@ -19,7 +19,7 @@ We have industrialized this "recipe" by using **Docker** to simulate a real infr
 
 ### Components
 1. **Backup Server (Rsnapshot)**: The orchestrator. It initiates the connection (Pull), retrieves archives, and manages history (snapshot rotation).
-2. **Client Servers (Server1 & Server2)**: Data sources. They execute a local script to compress and encrypt data before sending.
+2. **Client Servers (Server1 & Server2)**: Data sources. They execute a local script to compress and encrypt data ready to be pulled..
 3. **Localhost (Host)**: The administrator machine, used to manage keys, store persistent volumes, and perform manual restorations.
 
 ---
