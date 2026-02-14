@@ -53,6 +53,53 @@ The environment is pre-configured. Data folders (`files`, `inbox`, `restore`) ar
 docker compose up -d --build
 
 ```
+## Project Structure (Final State)
+
+The architecture looks as follows:
+
+```bash
+# Commande : tree -L 4
+
+├── Dockerfiles
+│   └── ubuntu
+│       ├── Dockerfile
+│       ├── id_rsa
+│       └── id_rsa.pub
+├── README.md
+├── backup.png
+├── config
+│   ├── cron
+│   │   ├── crontab
+│   │   └── passphrase
+│   ├── rsnapshot
+│   │   ├── rsnapshot.conf
+│   │   └── rsnapshot.log
+│   └── scripts
+│       ├── make_archive.sh
+│       └── trigger_backup.sh
+├── data
+│   ├── backup
+│   │   └── snapshots
+│   │       ├── alpha.0
+│   │       └── alpha.1
+│   ├── server1
+│   │   ├── files
+│   │   │   └── hellosrv1.txt
+│   │   ├── inbox
+│   │   │   └── backup.tar.gz.gpg
+│   │   └── restore
+│   │       └── hellosrv1.txt
+│   └── server2
+│       ├── files
+│       │   ├── plouf.txt
+│       │   └── plouf2.txt
+│       ├── inbox
+│       │   └── backup.tar.gz.gpg
+│       └── restore
+├── docker-compose.yml
+└── workspace_restore
+
+21 directories, 18 files
 
 # Backup & Restore – Command Recap
 
