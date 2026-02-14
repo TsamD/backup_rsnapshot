@@ -59,7 +59,7 @@ The architecture looks as follows:
 
 ```bash
 # Commande : tree -L 4
-```
+
 ├── Dockerfiles
 │   └── ubuntu
 │       ├── Dockerfile
@@ -100,6 +100,7 @@ The architecture looks as follows:
 └── workspace_restore
 
 21 directories, 18 files
+```
 
 # Backup & Restore – Command Recap
 
