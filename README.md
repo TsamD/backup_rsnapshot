@@ -9,7 +9,7 @@ The objective was to set up a robust backup/restore strategy using standard Linu
 * **Rsync / SSH**: Secure synchronization.
 * **GPG**: Backup encryption.
 * **Tar**: Compression.
-* **Rsnapshot:** Management of GFS (Grandfather-Father-Son) retention without hardlink.
+* **Rsnapshot:** Management of GFS (Grandfather-Father-Son) retention.
 
 
 ## Solution Architecture
