@@ -9,7 +9,7 @@ The objective was to set up a robust backup/restore strategy using standard Linu
 * **Rsync / SSH**: Secure synchronization.
 * **GPG**: Backup encryption.
 * **Tar**: Compression.
-* **Rsnapshot:** Management of GFS (Grandfather-Father-Son) retention and hardlinks.
+* **Rsnapshot:** Management of GFS (Grandfather-Father-Son) retention without hardlink.
 
 
 ## Solution Architecture
@@ -22,6 +22,20 @@ We have industrialized this "recipe" by using **Docker** to simulate a real infr
 1. **Backup Server (Rsnapshot)**: The orchestrator. It initiates the connection (Pull), retrieves archives, and manages history (snapshot rotation).
 2. **Client Servers (Server1 & Server2)**: Data sources. They execute a local script to compress and encrypt data ready to be pulled..
 3. **Localhost (Host)**: The administrator machine, used to manage keys, store persistent volumes, and perform manual restorations.
+
+---
+
+## Important: Technical Analysis of Deduplication
+
+In this specific version of the project, **Hardlinks (deduplication) are NOT effective**, even if Rsnapshot is used. 
+
+**Reason:**
+* **GPG Entropy**: Each time the `make_archive.sh` script runs, GPG adds a random salt/IV to the encryption. Even if the source files are identical, the resulting `.gpg` file is binary-different every time.
+* **File Recreation**: Since the archive is recreated before each pull, it gets a new Inode on the client side.
+* **Result**: Rsnapshot sees a "new" file and downloads it entirely. Each snapshot (alpha.0, alpha.1, etc.) consumes full disk space.
+
+*Note: For a version supporting full deduplication, see the `rsnapshot-luks` repository.*
+[Project Rsnapshot-LUKS](https://github.com/TsamD/rsnapshot-luks.git)
 
 ---
 
