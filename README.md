@@ -59,7 +59,7 @@ The architecture looks as follows:
 
 ```bash
 # Commande : tree -L 4
-
+```
 ├── Dockerfiles
 │   └── ubuntu
 │       ├── Dockerfile
